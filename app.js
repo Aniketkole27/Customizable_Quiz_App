@@ -49,11 +49,10 @@ addDiv.addEventListener("click", () => {
         let a4 = option4.value;
 
 
-
         let options = [a1, a2, a3, a4];
-        if (input.value !== '' && a1, a2, a3, a4 !== '') {
-            checkMarks(options);
+        if ((input.value !== '') && (a1, a2, a3, a4 !== '')) {
         }
+        checkMarks(options);
 
         input.value = "";
         // options.forEach((option)=>{
@@ -105,20 +104,27 @@ const checkMarks = (arr) => {
         start.id = "sTest";
         start.classList.add('btn');
 
+        let label = document.createElement('span');
+        label.innerHTML = "Minutes: ";
+        label.classList.add("timerText");
+
         let timer = document.createElement('input');
-        timer.setAttribute("type", "time");
-        timer.setAttribute('class',"add");
-        mainDiv.appendChild(timer);
-        mainDiv.appendChild(start);
+        timer.setAttribute("type", "number");
+        timer.setAttribute('class', "timer");
+        timer.setAttribute('placeholder', "Set Time")
+        timer.style.margin = "10px";
         
+        startTest.appendChild(label);
+        startTest.appendChild(timer);
+        startTest.appendChild(start);
+        mainDiv.appendChild(startTest)
+
         document.querySelector("#sTest").addEventListener('click', () => {
             console.log("Hey i am clicked");
-            mainDiv.replaceChild(container,newDiv);
+            mainDiv.replaceChild(container, newDiv);
             start.style.display = "none";
         })
     }
-
-
 
     arr.forEach((option => {
         const label = document.createElement('label');
