@@ -47,6 +47,7 @@ html {
 .newDiv {
     /* margin-top: 6%; */
     padding: 20px;
+    margin: 15px;
     align-items: center;
     border: 1px solid black;
     font-size: 20px;
@@ -103,7 +104,11 @@ html {
 }
 
 input[type="radio"] {
-    background-color: red;
+    cursor: pointer;
+    margin-right: 5px;
+    transform: scale(1.2); 
+    gap: 10px;   
+    accent-color: blue;
 }
 
 #addbtn {
@@ -112,7 +117,33 @@ input[type="radio"] {
 
 #sTest {
     width: 30%;
-    margin: 3% 0 5% 35%;
+    margin: 3% 0 5% 25%;
+    outline: none;
+}
+
+.timerText{
+    position: relative;
+    left: 20%;
+    font-size: 20px;
+}
+
+ .timer{
+    position: relative;
+    left: 20%;
+    padding: 5px;
+    outline: none;
+    /* margin-left: 40%; */
+    font-size: 17px;
+    border: 1px solid black;
+    border-radius: 10px;
+    /* width: 7%; */
+    text-align: center;
+    background-color: #f0f0f0;
+    color: black;
+}
+
+input[type="number"]{
+    appearance: none; 
 }
 
 .options {
@@ -125,4 +156,8 @@ input[type="radio"] {
     margin-top: 10px;
     margin-left: 25%;
     outline: none;
+}
+
+.startTest{
+    margin-top: 2%;
 }
