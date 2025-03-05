@@ -9,7 +9,7 @@
 body,
 html {
     height: 100vh;
-    background-color: azure;
+    background-color: aliceblue;
 }
 
 .main_contaner h1 {
@@ -32,6 +32,7 @@ html {
     padding: 10px;
     cursor: pointer;
     user-select: none;
+
 }
 
 .header #add {
@@ -56,6 +57,7 @@ html {
 
 .container {
     /* border: 1px solid black; */
+    /* position: relative; */
     padding: 10px;
     margin-top: 10px;
     border-radius: 10px;
@@ -115,28 +117,28 @@ input[type="radio"] {
     margin-left: 70%;
 }
 
-#sTest {
-    width: 30%;
-    margin: 3% 0 5% 25%;
+#sTest ,#eExam{
+    width: 20%;
+    margin-left: 60%;
+    margin: 3% 0 5% 40%;
     outline: none;
 }
 
 .timerText{
     position: relative;
-    left: 20%;
+    left: -40%;
     font-size: 20px;
 }
 
  .timer{
     position: relative;
-    left: 20%;
+    left: -40%;
     padding: 5px;
     outline: none;
-    /* margin-left: 40%; */
     font-size: 17px;
     border: 1px solid black;
     border-radius: 10px;
-    /* width: 7%; */
+    width: 8rem;
     text-align: center;
     background-color: #f0f0f0;
     color: black;
@@ -160,4 +162,18 @@ input[type="number"]{
 
 .startTest{
     margin-top: 2%;
+}
+
+.timerDisplay{
+    /* position: absolute; */
+    position: fixed;
+    left: 80%;
+    /* top: rem; */
+    font-size: 22px;
+    font-weight: bolder;
+    letter-spacing: 3px;
+    padding: 2px 20px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.244);
+    color: black;
 }
