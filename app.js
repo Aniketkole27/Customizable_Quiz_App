@@ -78,6 +78,12 @@ addDiv.addEventListener("click", () => {
 
 let counter = 0;
 const checkMarks = (arr) => {
+    // console.log(option1.value)
+    // console.log(option2.value)
+    // console.log(option3.value)
+    // console.log(option4.value)
+    console.log(input.value)
+
     let newQuestion = document.createElement("div");
     newQuestion.classList.add("newQuestion");
     counter++;
@@ -111,18 +117,41 @@ const checkMarks = (arr) => {
         let timer = document.createElement('input');
         timer.setAttribute("type", "number");
         timer.setAttribute('class', "timer");
-        timer.setAttribute('placeholder', "Set Time")
+        timer.setAttribute('placeholder', "SetTime")
         timer.style.margin = "10px";
         
+        startTest.appendChild(start);
         startTest.appendChild(label);
         startTest.appendChild(timer);
-        startTest.appendChild(start);
         mainDiv.appendChild(startTest)
 
         document.querySelector("#sTest").addEventListener('click', () => {
             console.log("Hey i am clicked");
-            mainDiv.replaceChild(container, newDiv);
-            start.style.display = "none";
+            let time = timer.value;
+            
+            let endExam = document.createElement('button');
+            endExam.setAttribute = "button"
+            endExam.innerText = "End Exam";
+            endExam.id = "eExam";
+            endExam.classList.add('btn');
+            
+            if(time !== ""){
+                mainDiv.replaceChild(container, newDiv);
+                updateTime(time);
+                startTest.appendChild(endExam);
+                start.style.display = "none";
+                timer.style.display = "none";
+                label.style.display = "none";
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }   
+            else{
+                alert("Enter the Timing for Exam.");
+            }
+
         })
     }
 
@@ -140,4 +169,35 @@ const checkMarks = (arr) => {
         label.appendChild(document.createTextNode(option));
         container.appendChild(newQuestion);
     }))
+    
+}
+
+const updateTime = (time)=>{
+
+    let totalSeconds = time * 60;
+    let timeInterval = null;
+    const timerDisplay = document.createElement("div");
+    timerDisplay.classList.add("timerDisplay");
+    mainDiv.insertBefore(timerDisplay,mainDiv.firstChild);
+    
+    startTimer();   
+    function updateTimerDisplay(){
+        const minutes = Math.floor(totalSeconds / 60)
+        const second = totalSeconds % 60;
+        timerDisplay.innerText = `${minutes}:${second < 10 ? '0' : ''}${second}`;        
+    }
+
+    function startTimer(){
+        timeInterval = setInterval(()=>{
+            if (totalSeconds > 0) {
+                totalSeconds--;
+                updateTimerDisplay();
+            } else {
+                clearInterval(timeInterval);
+                timeInterval = null;
+                alert("Time's up!");
+            }
+        },1000)
+    }
+    updateTimerDisplay();
 }
