@@ -9,9 +9,7 @@ container.classList.add("container");
 let newDiv = document.createElement("div");
 newDiv.classList.add("newDiv");
 
-addDiv.addEventListener("click", () => {
-
-    let input = document.createElement("input");
+let input = document.createElement("input");
     input.setAttribute("type", "text");
     input.setAttribute("id", "input");
     input.setAttribute("autocomplete", "off");
@@ -37,12 +35,21 @@ addDiv.addEventListener("click", () => {
     option4.setAttribute("class", "options");
     option4.setAttribute("placeholder", "option 4");
 
+    let answer = document.createElement("input");
+    answer.setAttribute("type", "number");
+    answer.setAttribute("class", "options ans");
+    answer.setAttribute("placeholder", "Enter option No. Like 4,2 ");
+
+
+    addDiv.addEventListener("click", () => {
+ 
     let addButton = document.createElement("button");
     addButton.id = "addbtn";
     addButton.classList.add("btn");
     addButton.innerText = "Add Question";
-
+    
     addButton.addEventListener("click", () => {
+
         let a1 = option1.value;
         let a2 = option2.value;
         let a3 = option3.value;
@@ -71,6 +78,7 @@ addDiv.addEventListener("click", () => {
     newDiv.appendChild(option2);
     newDiv.appendChild(option3);
     newDiv.appendChild(option4);
+    newDiv.appendChild(answer)
     newDiv.appendChild(addButton);
     mainDiv.appendChild(container);
 
@@ -82,8 +90,7 @@ const checkMarks = (arr) => {
     // console.log(option2.value)
     // console.log(option3.value)
     // console.log(option4.value)
-    console.log(input.value)
-
+    // console.log(input.value)
     let newQuestion = document.createElement("div");
     newQuestion.classList.add("newQuestion");
     counter++;
@@ -91,11 +98,12 @@ const checkMarks = (arr) => {
     let numberSpan = document.createElement("span");
     numberSpan.classList.add("number");
     numberSpan.innerText = counter + ". ";
-
+    
     let textSpan = document.createElement("span");
     textSpan.classList.add("text");
     textSpan.innerText = input.value;
-
+    
+    storeAnswers(counter);
     newQuestion.appendChild(numberSpan);
     newQuestion.appendChild(textSpan);
 
@@ -119,23 +127,25 @@ const checkMarks = (arr) => {
         timer.setAttribute('class', "timer");
         timer.setAttribute('placeholder', "SetTime")
         timer.style.margin = "10px";
-        
+
         startTest.appendChild(start);
         startTest.appendChild(label);
         startTest.appendChild(timer);
         mainDiv.appendChild(startTest)
 
+
         document.querySelector("#sTest").addEventListener('click', () => {
-            console.log("Hey i am clicked");
+            // console.log("Hey i am clicked");
             let time = timer.value;
-            
+
             let endExam = document.createElement('button');
             endExam.setAttribute = "button"
             endExam.innerText = "End Exam";
-            endExam.id = "eExam";
             endExam.classList.add('btn');
-            
-            if(time !== ""){
+            endExam.id = "eExam";
+
+
+            if (time !== "") {
                 mainDiv.replaceChild(container, newDiv);
                 updateTime(time);
                 startTest.appendChild(endExam);
@@ -147,21 +157,30 @@ const checkMarks = (arr) => {
                     top: 0,
                     behavior: "smooth"
                 });
-            }   
-            else{
+            }
+            else {
                 alert("Enter the Timing for Exam.");
             }
 
+            
+            // endExam.addEventListener("click",()=>{
+            //     console.log(option1);
+            // })
+            showResult(endExam);
         })
+
     }
 
+    let count = 1;
     arr.forEach((option => {
         const label = document.createElement('label');
         const radio = document.createElement('input');
         radio.style.margin = '5px';
         radio.type = 'radio';
         radio.name = "option" + counter;  // Same name so only one can be selected
-        radio.value = option.toLowerCase();
+        // radio.value = option.toLowerCase();
+        radio.value = count;
+        count++;
 
         label.appendChild(document.createElement('br'));
         newQuestion.appendChild(label);
@@ -169,26 +188,26 @@ const checkMarks = (arr) => {
         label.appendChild(document.createTextNode(option));
         container.appendChild(newQuestion);
     }))
-    
+
 }
 
-const updateTime = (time)=>{
+const updateTime = (time) => {
 
     let totalSeconds = time * 60;
     let timeInterval = null;
     const timerDisplay = document.createElement("div");
     timerDisplay.classList.add("timerDisplay");
-    mainDiv.insertBefore(timerDisplay,mainDiv.firstChild);
-    
-    startTimer();   
-    function updateTimerDisplay(){
+    mainDiv.insertBefore(timerDisplay, mainDiv.firstChild);
+
+    startTimer();
+    function updateTimerDisplay() {
         const minutes = Math.floor(totalSeconds / 60)
         const second = totalSeconds % 60;
-        timerDisplay.innerText = `${minutes}:${second < 10 ? '0' : ''}${second}`;        
+        timerDisplay.innerText = `${minutes}:${second < 10 ? '0' : ''}${second}`;
     }
 
-    function startTimer(){
-        timeInterval = setInterval(()=>{
+    function startTimer() {
+        timeInterval = setInterval(() => {
             if (totalSeconds > 0) {
                 totalSeconds--;
                 updateTimerDisplay();
@@ -197,7 +216,20 @@ const updateTime = (time)=>{
                 timeInterval = null;
                 alert("Time's up!");
             }
-        },1000)
+        }, 1000)
     }
     updateTimerDisplay();
+}
+
+
+function storeAnswers(counter){
+    // let num = counter;
+    let ans = {
+        questionNumber: counter,
+        answerNumber : answer.value,
+    }
+    // console.log(counter +". " + input.value);
+    // console.log(option1.value);
+    // console.log(answer.value);
+    console.log(ans)
 }
