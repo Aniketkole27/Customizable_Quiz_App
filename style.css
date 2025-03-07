@@ -159,7 +159,11 @@ input[type="number"]{
     margin-left: 25%;
     outline: none;
 }
-
+.ans{
+    outline: none;
+    border: 1px solid #00000099;
+    border-radius: 3px;
+}
 .startTest{
     margin-top: 2%;
 }
