@@ -117,22 +117,29 @@ input[type="radio"] {
     margin-left: 70%;
 }
 
-#sTest ,#eExam{
+#sTest{
     width: 20%;
+    margin-left: 60%;
+    margin: 3% 0 5% 30%;
+    outline: none;
+}
+#eExam{
     margin-left: 60%;
     margin: 3% 0 5% 40%;
     outline: none;
 }
 
 .timerText{
-    position: relative;
-    left: -40%;
+    /* position: relative;
+    right: 35rem; */
     font-size: 20px;
+    margin-left: 5%;
 }
 
  .timer{
-    position: relative;
-    left: -40%;
+    /* position: relative;
+    right: 35rem; */
+    /* margin-left: 20%; */
     padding: 5px;
     outline: none;
     font-size: 17px;
@@ -179,4 +186,18 @@ input[type="number"]{
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.244);
     color: black;
+}
+
+.score{
+    margin-top: 15%;
+    margin-left: 40%;
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+    border: 1px solid black;
+    padding: 5px 10px;
+    display: inline-block;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.144);
+    align-items: center;
 }
