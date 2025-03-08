@@ -2,14 +2,14 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Lohit Marathi", Arial, "Droid Serif", "sans-serif";
+    font-family: "Lohit Marathi", Arial, "Droid Serif", "sans-serif";;
 
 }
 
 body,
 html {
     height: 100vh;
-    background-color: aliceblue;
+    background-color: rgba(218, 165, 32, 0.068);
 }
 
 .main_contaner h1 {
@@ -152,7 +152,7 @@ input[type="number"]{
     padding: 5px 10px;
     width: 20%;
     font-size: 15px;
-    display: flex;
+    display: block;
     flex-direction: row;
     gap: 10px;
     margin-top: 10px;
@@ -160,10 +160,9 @@ input[type="number"]{
     outline: none;
 }
 .ans{
-    outline: none;
-    border: 1px solid #00000099;
-    border-radius: 3px;
+    text-align: center;
 }
+
 .startTest{
     margin-top: 2%;
 }
