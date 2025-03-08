@@ -72,8 +72,8 @@ addDiv.addEventListener("click", () => {
     let a5 = answer.value;
     let options = [a1, a2, a3, a4];
     if (input.value !== "" && (a1, a2, a3, a4, a5 !== "")) {
+        checkMarks(options);
     }
-    checkMarks(options);
 
     input.value = "";
     option1.value = "";
@@ -105,11 +105,11 @@ endExam.classList.add("btn");
 endExam.id = "eExam";
 
 let counter = 0;
-const checkMarks = (arr) => {
 
+const checkMarks = (arr) => {
+  counter++;
   let newQuestion = document.createElement("div");
   newQuestion.classList.add("newQuestion");
-  counter++;
 
   let numberSpan = document.createElement("span");
   numberSpan.classList.add("number");
@@ -119,7 +119,7 @@ const checkMarks = (arr) => {
   textSpan.classList.add("text");
   textSpan.innerText = input.value;
 
-//   storeAnswers(counter);
+  //   storeAnswers(counter);
   newQuestion.appendChild(numberSpan);
   newQuestion.appendChild(textSpan);
 
@@ -213,11 +213,67 @@ const updateTime = (time) => {
         timeInterval = null;
         alert("Time's up!");
       }
+
+        function stopTimer() {
+          clearInterval(timeInterval);
+          timeInterval = null;
+          totalSeconds = time * 60;
+          updateTimerDisplay();
+      }
+      endExam.addEventListener("click", ()=>{
+          stopTimer();
+          timerDisplay.style.display = "none";
+      });
     }, 1000);
   }
+
   updateTimerDisplay();
 };
 
+index = 0;
+let correct = 0;
 endExam.addEventListener("click", () => {
-    console.log("clicked");      
-}); 
+  console.log("clicked");
+
+  let totalQuestions = correctAnswers.length;
+  let answers = document.querySelectorAll(".newQuestion");
+  console.log(answers);
+
+  answers.forEach((answer, index) => {
+    let selected = answer.querySelector("input:checked");
+    //   console.log(selected);
+
+    if (selected) {
+      let selectedOption = selected.value;
+      console.log(selectedOption);
+      let correctOption = correctAnswers[index].correctOption;
+      // console.log(correctOption);
+      if (selectedOption === correctOption) {
+        correct++;
+      }
+    }
+  });
+
+  // console.log(correct);
+  // alert("Your score is " + correct + " out of " + totalQuestions);
+  correct = 0;
+
+  const score = document.createElement("div");
+  score.classList.add("score");
+  score.innerText = "Score : " + correct + " out of " + totalQuestions + " ";
+
+  const reload = document.createElement("button");
+  reload.classList.add("btn");
+  reload.innerText = "-> Home Page";
+  reload.style.margin = "10px";
+  score.appendChild(reload);
+
+  endExam.style.display = "none";
+  mainDiv.replaceChild(score, container);
+
+
+  reload.addEventListener('click',()=>{
+      window.location.reload();
+  })
+
+});
